@@ -2,14 +2,14 @@
     <header class="sun-header">
         <h1 class="header">SunPlayer在线播放器</h1>
         <dl class="user">
-            <!--<template>
-                <router-link class="user-info" :to="" tag="dt">
-                    <img :src="" alt="">
-                    <span></span>
+            <template v-if="user.userId">
+                <router-link class="user-info" to="/music/userlist" tag="dt">
+                    <img :src="`${user.avatarUrl}?param=50y50`">
+                    <span>{{user.nickname}}</span>
                 </router-link>
-                <dd v-else class="user-btn">退出</dd>
+                <dd class="user-btn" @click="openDialog(2)">退出</dd>
             </template>
-            <dd v-else class="user-btn">登录</dd>-->
+            <dd v-else class="user-btn" @click="openDialog(0)">登录</dd>
         </dl>
         <!--登录-->
         <SunDialog ref="loginDialog" headText="登录" confirmBtnText="登录" cancelBtnText="关闭" @confirm="login">
@@ -175,6 +175,7 @@ export default {
             padding: 0 15px;
             border:1px solid $btn_color;
             outline: 0;
+            border-radius: 4px;
             background: transparent;
             color: $text_color_active;
             font-size: $font_size_medium;
