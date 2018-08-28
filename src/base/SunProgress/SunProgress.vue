@@ -101,7 +101,7 @@ export default {
     },
     watch : {
         percent (newPercent) {
-            if(newPercent >= && !this.move.status) {
+            if(newPercent >= 0 && !this.move.status) {
                 const barWidth = this.$refs.sunProgress.clientWidth - dotWidth
                 const offsetWidth = newPercent * barWidth
                 this.moveSlide(offsetWidth)

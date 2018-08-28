@@ -50,7 +50,7 @@ window.SunPlayer = window.SunPlayer = `欢迎使用 SunPlayer!
 当前版本为：V${pkg.version}
 作者：Sun
 歌曲来源于网易云音乐(http://music.163.com)`;
-console.info(`%c${SunPlayer}`, `color : red`);
+console.info(`%c${SunPlayer}`, `color : #198cff`);
 
 /* eslint-disable no-new */
 new Vue({

@@ -10,7 +10,7 @@
 <script>
 const pkg = require('../package.json')
 import { mapMutations, mapActions } from 'vuex'
-import { topList } from 'api'
+import { topList } from './api/index'
 import { defaultSheetId } from './assets/js/config'
 import { createTopList } from './assets/js/song'
 import SunHeader from 'components/SunHeader/SunHeader'
