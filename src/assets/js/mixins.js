@@ -39,7 +39,7 @@ export const loadMixin = {
         return {
             SunLoadShhow : true, //loading状态
         }
-    }，
+    },
     methods : {
         _hideLoad () {
             let timer

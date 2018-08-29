@@ -45,7 +45,7 @@
 
 <script>
 import { getLyric } from '../api/index'
-import { sunPlayerMusic } from './SunPlayer'
+import sunPlayerMusic from './SunPlayer'
 import { randomSortArray, addZero, parseLyric } from '../assets/js/util'
 import { playMode, defaultBG } from '../assets/js/config'
 import { mapGetters, mapMutations, mapActions } from 'vuex'

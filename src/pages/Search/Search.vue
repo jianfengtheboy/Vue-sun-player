@@ -1,15 +1,120 @@
 <template>
-  <div id="">
-
-  </div>
+    <div class="search">
+        <SunLoading v-model="sunLoadShow"></SunLoading>
+        <div class="search-head">
+            <span v-for="(item, index) in Artists.slice(0,5)" :key="index" @click="clickHot(item.first)">{{item.first}}</span>
+            <input type="text" class="search-input" placeholder="音乐/歌手" v-model.trim="searchValue" @keyup.enter="onEnter">
+        </div>
+        <MusicList ref="musicList" :list="list" :listType="2" @select="selectItem" @pullUp="pullUpLoad"></MusicList>
+    </div>
 </template>
-<script>
-export default {
-  name: "",
-  data: () => ({
 
-  })
+<script>
+import { mapGetters, mapActions, mapMutations } from 'vuex'
+import { search, searchHot, getMusicDetail } from '../../api/index'
+import formatSongs from '../../assets/js/song'
+import SunLoading from '../../base/SunLoading/SunLoading'
+import MusicList from '../../components/MusicList/MusicList'
+import { loadMixin } from '../../assets/js/mixins'
+
+export default {
+    name: "search",
+    mixins: [loadMixin],
+    components: {
+        SunLoading,
+        MusicList
+    },
+    data: () => ({
+        Artists : [], //热搜数组
+        list : [], //搜索数组
+        page : 0, //分页
+        lockUp : true //是否锁定上拉加载事件,默认锁定
+    }),
+    computed : {
+        ...mapGetters([
+            'playing',
+            'currentMusic'
+        ])
+    },
+    watch : {
+        list (newList, oldList) {
+            if(newList.length !== oldList.length) {
+                this.lockUp = false
+            } else if (newList[newList.length -1].id !== oldList.length > 0 && oldList[oldList.length - 1].id) {
+                this.lockUp = false
+            }
+        }
+    },
+    created() {
+        //获取热搜
+        searchHot().then(res => {
+            if(res.data.code === 200) {
+                this.Artists = res.data.result.hots
+                this.sunLoadShow = false
+            }
+        })
+    },
+    methods: {
+        //点击热搜
+        clickHot (name) {
+            this.searchValue = name
+            this.onEnter()
+        },
+        //搜索事件
+        onEnter () {
+            if(this.searchValue.replace(/(^\s+)|(\s+$)/g, "") === '') {
+                this.$sunToast('搜索内容不能为空!')
+                return
+            }
+            this.sunLoadShow = true
+            this.page = 0
+            if(this.list.length > 0) {
+                this.$refs.musicList.scrollTop()
+            }
+            search(this.searchValue).then(res => {
+                if(res.data.code === 200) {
+                    this.list = formatSongs(res.data.result.songs)
+                    this._hideLoad()
+                }
+            })
+        },
+        //滚动加载事件
+        pullUpLoad () {
+            this.sunLoadShow = true
+            this.page += 1
+            search(this.searchValue, this.page).then(res => {
+                if(res.data.code === 200) {
+                    if(!res.data.result.songs) {
+                        this.$sunToast('没有更多歌曲啦!')
+                        this.sunLoadShow = false
+                        return
+                    }
+                    this.list = [...this.list, ...formatSongs(res.data.result.songs)]
+                    this._hideLoad()
+                }
+            })
+        },
+        //播放歌曲
+        async selectItem(music) {
+            if(this.currentMusic.id !== music.id) {
+                let image = await this._getMusicDetail(music.id)
+                music.image = image
+                this.selectAddPlay(music)
+            }else{
+                this.setPlaying(true)
+            }
+        },
+        //获取歌曲详情
+        _getMusicDetail (id) {
+            return getMusicDetail(id).then(res => {
+                if(res.data.code === 200) {
+                    return res.data.songs[0].al.picUrl
+                }
+            })
+        }
+    }
 }
 </script>
+
 <style lang="scss" scoped>
 </style>

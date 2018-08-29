@@ -156,7 +156,7 @@ export default {
             top: 50%;
             right: -5px;
             width: 10px;
-            height: 50px;
+            height: 10px;
             border-radius: 50%;
             background-color: $dot_color;
             transform: translateY(-50%);
