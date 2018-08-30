@@ -8,7 +8,7 @@ import store from './store'
 import router from './router'
 import axios from 'axios'
 import FastClick from 'fastclick'
-import SunToast from 'base/SunToast'
+import sunToast from './base/SunToast/index'
 import VueLazyload from 'vue-lazyload'
 
 import '@/assets/css/index.scss'
@@ -20,7 +20,7 @@ Vue.prototype.$http = axios
 FastClick.attach(document.body)
 
 //弹出层
-Vue.use(SunToast)
+Vue.use(sunToast)
 
 //懒加载
 Vue.use(VueLazyload, {

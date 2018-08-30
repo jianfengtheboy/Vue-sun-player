@@ -12,7 +12,7 @@
             </template>
             <template v-else>
                 <dd>sunPlayer在线音乐播放器</dd>
-                <dd><a class="github" target="_blank" href="https://github.com/jianfengtheboy">Jianfengtheboy</a></dd>
+                <dd><a class="github" target="_blank" href="https://github.com/jianfengtheboy/Vue-sun-player">Jianfengtheboy</a></dd>
             </template>
         </dl>
         <!--歌词-->

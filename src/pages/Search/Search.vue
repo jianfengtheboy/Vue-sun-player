@@ -111,10 +111,62 @@ export default {
                     return res.data.songs[0].al.picUrl
                 }
             })
-        }
+        },
+        ...mapMutations({
+            setPlaying : 'SET_PLAYING'
+        }),
+        ...mapActions([
+            'selectAddPlay'
+        ])
     }
 }
 </script>
 
 <style lang="scss" scoped>
+@import "~assets/css/base";
+
+.search {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .search-head {
+        display: flex;
+        height: 40px;
+        padding: 10px 15px;
+        overflow: hidden;
+        background: $searh_bg_color;
+        span {
+            line-height: 40px;
+            margin-right: 15px;
+            cursor: pointer;
+            &:hover {
+                color: $text_color_active;
+            }
+            @media (max-width: 640px) {
+                & {
+                    display: none;
+                }
+            }
+        }
+        .search-input {
+            flex: 1;
+            height: 40px;
+            box-sizing: border-box;
+            padding: 0 15px;
+            border:1px solid $btn_color;
+            outline: 0;
+            background: transparent;
+            color: $text_color_active;
+            font-size: $font_size_medium;
+            box-shadow: 0 0 1px 0 #fff inset;
+            &::placeholder {
+                color: $text_color;
+            }
+        }
+    }
+    .musicList {
+        width: 100%;
+        height: calc(100% - #{50px});
+    }
+}
 </style>

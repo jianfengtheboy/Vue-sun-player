@@ -89,9 +89,9 @@ export default {
     z-index: 1992;
     background-color: $dialog_bg_color;
     user-select: none;
-    &.mm-dialog-fade-enter-active {
+    &.sun-dialog-fade-enter-active {
         animation: sun-dialog-fadein 0.3s;
-        .mm-dialog-content {
+        .sun-dialog-content {
             animation: sun-dialog-zoom 0.3s;
         }
     }

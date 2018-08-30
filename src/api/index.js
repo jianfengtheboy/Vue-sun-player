@@ -91,10 +91,10 @@ export function getMusicUrl (id) {
 }
 
 //获取歌词
-export function getLyric (id) {
-    const url = `${URL}/lyric`
+export function getLyric(id) {
+    const url = `${URL}/lyric`;
     return axios.get(url, {
-        params : {
+        params: {
             id
         }
     })

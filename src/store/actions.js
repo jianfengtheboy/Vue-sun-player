@@ -1,4 +1,4 @@
-import { clearHistoryList, setHistoryList, removeHistoryList, setMode, setUserUid } from '../assets/js/storage'
+import { clearHistoryList, setHistoryList, removeHistoryList, setMode, setUserId } from '../assets/js/storage'
 import * as types from './mutation-types'
 
 function findIndex (list, music) {
@@ -8,7 +8,7 @@ function findIndex (list, music) {
 }
 
 //设置播放列表
-export const setPlayList = function({ commit }, { list }) {
+export const setPlaylist = function({ commit }, { list }) {
     commit(types.SET_PLAYLIST, list)
     commit(types.SET_ORDERLIST, list)
 }

@@ -17,8 +17,8 @@
                 </div>
             </dd>
             <!--最新评论-->
-            <dt class="commnet-title">最新评论</dt>
-            <dd class="commnet-item" v-for="item in commentList" :key="item.commentId">
+            <dt class="comment-title">最新评论</dt>
+            <dd class="comment-item" v-for="item in commentList" :key="item.commentId">
                 <a class="comment-item-pic" target="_blank" :href="`http://music.163.com/#/user/home?id=${item.user.userId}`">
                     <img class="cover-img" v-lazy="`${item.user.avatarUrl}?param=50y50`" />
                 </a>
@@ -75,7 +75,7 @@ export default {
                 if(res.data.code === 200) {
                     this.hotComments = res.data.hotComments
                     this.commentList = res.data.comments
-                    this.total = rs.data.total
+                    this.total = res.data.total
                     this.lockUp = true
                     this._hideLoad()
                 }

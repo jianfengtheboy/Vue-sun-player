@@ -32,12 +32,12 @@ export const listMixin = {
 
 /**
  * loading状态
- * @type {{data(): *, methods: {_hideLoad(): void}}}
+ *
  */
 export const loadMixin = {
     data () {
         return {
-            SunLoadShhow : true, //loading状态
+            sunLoadShow : true, //loading状态
         }
     },
     methods : {
@@ -45,7 +45,7 @@ export const loadMixin = {
             let timer
             clearTimeout(timer)
             timer = setTimeout(() => {
-                this.SunLoadShhow = false
+                this.sunLoadShow = false
             },200)
         }
     }

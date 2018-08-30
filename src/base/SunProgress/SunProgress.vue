@@ -78,7 +78,7 @@ export default {
             }
             let endX = e.clientX || e.touches[0].pageX
             let dist = endX - this.move.startX
-            let offsetWidth = Math.min(this.$refs.mmProgress.clientWidth - dotWidth,Math.max(0,this.move.left + dist))
+            let offsetWidth = Math.min(this.$refs.sunProgress.clientWidth - dotWidth,Math.max(0,this.move.left + dist))
             this.moveSlide(offsetWidth)
             this.commitPercent()
         },

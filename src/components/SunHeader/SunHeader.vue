@@ -74,31 +74,31 @@ export default {
         out () {
             this.user = {}
             this.setUid(null)
-            this.$SunToast('退出成功！')
+            this.$sunToast('退出成功！')
         },
         //登录
         login () {
             if(this.uidValue === '') {
-                this.$SunToast('UID不能为空')
+                this.$sunToast('UID不能为空')
                 this.openDialog(0)
             }
             this._getUserPlayList(this.uidValue)
         },
         //获取用户数据
-        _getUserPlayList () {
-            getUserPlayList (uid)
+        _getUserPlayList (uid) {
+            getUserPlayList(uid)
                 .then(res => {
                     if(res.data.code === 200) {
                         this.uidValue = ''
                         if(res.data.playlist.length === 0 || !res.data.playlist[0].creator) {
-                            this.$SunToast(`未查询找UID为 ${uid} 的用户信息`)
+                            this.$sunToast(`未查询找UID为 ${uid} 的用户信息`)
                             return
                         }
                         this.setUid(uid)
                         this.user = res.data.playlist[0].creator
                         setTimeout(() => {
-                            this.$SunToast(`${this.user.nickname} 欢迎使用`)
-                        },200)
+                            this.$sunToast(`${this.user.nickname} 欢迎使用`)
+                        }, 200)
                     }
                 })
         },

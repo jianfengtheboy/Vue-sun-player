@@ -86,7 +86,7 @@ export function getUserId () {
     return Number(storage.get(USERID_KEY, null))
 }
 //修改用户uid
-export function setUserUid (uid) {
+export function setUserId (uid) {
     storage.set(USERID_KEY, uid)
     return uid
 }
