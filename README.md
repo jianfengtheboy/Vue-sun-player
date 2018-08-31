@@ -40,7 +40,7 @@ node app.js //服务端运行 访问 http://localhost:3000/
 - Vue-Router（页面路由）
 - Vuex（状态管理）
 - ES 6 / 7 （JavaScript 语言的下一代标准）
-- Less（CSS预处理器）
+- Sass（CSS预处理器）
 - Axios（网络请求）
 - FastClick（解决移动端300ms点击延迟）
 
